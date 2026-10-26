@@ -8,7 +8,6 @@ public class Task extends PanacheEntity {
     public String title;
     public boolean completed;
 
-    // A default constructor is required by Hibernate
     public Task() {
     }
 
