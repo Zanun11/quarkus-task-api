@@ -7,25 +7,7 @@ COPY src ./src
 RUN mvn clean package -DskipTests
 
 # Stage 2: Create the runtime image
-FROM eclipse-temurin:21-jre-runtime
-WORKDIR /deployments
-COPY --from=build /app/target/quarkus-app/lib/ /deployments/lib/
-COPY --from=build /app/target/quarkus-app/*.jar /deployments/
-COPY --from=build /app/target/quarkus-app/app/ /deployments/app/
-COPY --from=build /app/target/quarkus-app/quarkus/ /deployments/quarkus/
-
-EXPOSE 8080
-ENV JAVA_OPTS="-Dquarkus.http.host=0.0.0.0 -Djava.util.logging.manager=org.jboss.logmanager.LogManager"
-CMD ["java", "-jar", "/deployments/quarkus-run.jar"]# Stage 1: Build the application
-FROM maven:3.9.6-eclipse-temurin-21 AS build
-WORKDIR /app
-COPY pom.xml .
-RUN mvn dependency:go-offline
-COPY src ./src
-RUN mvn clean package -DskipTests
-
-# Stage 2: Create the runtime image
-FROM eclipse-temurin:21-jre-runtime
+FROM eclipse-temurin:21-jre
 WORKDIR /deployments
 COPY --from=build /app/target/quarkus-app/lib/ /deployments/lib/
 COPY --from=build /app/target/quarkus-app/*.jar /deployments/
