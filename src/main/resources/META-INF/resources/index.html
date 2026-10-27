@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Homemade Halal Food Wolverhampton</title>
+<link rel="icon" type="image/jpeg" href="images/logo.jpg" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="nav">
+    <a class="logo" href="#top"><img src="images/logo.jpg" alt="Homemade Halal Food logo" />Homemade Halal<span> Food</span></a>
+    <button class="hamburger" id="hamburger" aria-label="Open menu">☰</button>
+    <div class="nav-links" id="navLinks">
+      <a href="#menu">Menu</a>
+      <a href="#reserve">Reserve</a>
+      <a href="#bookings">Bookings</a>
+      <a href="#" id="navAuthBtn">Account</a>
+    </div>
+    <div class="nav-cta">
+      <span class="user-chip" id="userChip"><span class="avatar">S</span><span id="chipName">Guest</span></span>
+      <button class="btn btn-primary btn-small" id="authBtn" type="button">Login / Signup</button>
+    </div>
+  </nav>
+</header>
+
+<div id="top" class="hero">
+  <div class="hero-inner">
+    <div>
+      <span class="eyebrow">💯 100% Halal · Homemade · Wolverhampton</span>
+      <h1>Homemade. Halal. Delicious.</h1>
+      <p class="lead">Chicken biryani, karahi, shami kababs, halal pizza, frozen parathas and doodh pati chai — browse the live menu, book a table in seconds, or order delivery across Wolverhampton.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#menu">View Menu</a>
+        <a class="btn btn-ghost" href="#reserve">Book a Table</a>
+      </div>
+      <div class="hero-stats">
+        <div><strong>💯 Halal</strong>100% halal, always</div>
+        <div><strong>🚚 Delivery</strong>available in Wolverhampton</div>
+        <div><strong>📞 +44 7465 239428</strong>call or WhatsApp orders</div>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="photo slideshow" id="heroSlides">
+        <img class="slide active" src="images/slide-brand.jpg" alt="Homemade Halal Food Wolverhampton" />
+        <img class="slide" src="images/slide-pepperoni.jpg" alt="Pepperoni pizza" />
+        <img class="slide" src="images/slide-jalapeno.jpg" alt="Jalapeno special pizza" />
+        <img class="slide" src="images/slide-tikka.jpg" alt="Chicken tikka pizza" />
+        <span class="slide-cap" id="heroCap">Homemade. Halal. Delicious.</span>
+        <span class="dots" id="heroDots"><button type="button" class="dot active" data-i="0" aria-label="Slide 1"></button><button type="button" class="dot" data-i="1" aria-label="Slide 2"></button><button type="button" class="dot" data-i="2" aria-label="Slide 3"></button><button type="button" class="dot" data-i="3" aria-label="Slide 4"></button></span>
+      </div>
+      <div class="body">
+        <h3>Made with love</h3>
+        <p>Fresh halal pizzas, biryani, karahi and more — order delivery across Wolverhampton.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main class="wrap">
+
+  <!-- AUTH MODAL -->
+  <div id="authModal" class="modal">
+    <div class="modal-content">
+      <div class="section-head" style="margin-bottom: 10px;">
+        <div>
+          <h2>Account</h2>
+          <p>Sign up or log in to manage your reservations quickly.</p>
+        </div>
+      </div>
+      
+      <div id="loggedOutBox">
+        <div class="tabs">
+          <button type="button" id="tabSignup" class="active">Sign Up</button>
+          <button type="button" id="tabLogin">Log In</button>
+        </div>
+        <div id="authMsg" class="error" hidden></div>
+        <form id="signupForm" autocomplete="on">
+          <label class="field"><span>Full name</span><input type="text" id="suName" placeholder="e.g. Jane Doe" required /></label>
+          <label class="field"><span>Email</span><input type="email" id="suEmail" placeholder="you@example.com" required /></label>
+          <label class="field"><span>Password (min 6 chars)</span><input type="password" id="suPass" placeholder="••••••••" minlength="6" required /></label>
+          <button class="btn btn-primary" type="submit" style="width:100%">Create Account</button>
+          <p class="hint">By signing up you agree to our friendly house rules.</p>
+        </form>
+        <form id="loginForm" hidden autocomplete="on">
+          <label class="field"><span>Email</span><input type="email" id="liEmail" placeholder="you@example.com" required /></label>
+          <label class="field"><span>Password</span><input type="password" id="liPass" placeholder="••••••••" required /></label>
+          <button class="btn btn-primary" type="submit" style="width:100%">Log In</button>
+          <p class="hint">No account yet? <a href="#" id="switchToSignup">Create one</a> — it takes 10 seconds.</p>
+        </form>
+      </div>
+      
+      <div id="loggedInBox" hidden>
+        <div class="success">You are logged in. Reservations will be pre-filled with your name. 🎉</div>
+        <p style="margin:6px 0 2px"><strong id="welcomeName">Guest</strong></p>
+        <p class="hint" style="margin:0 0 14px" id="welcomeEmail">you@example.com</p>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <a class="btn btn-primary btn-small" href="#reserve">Book a Table</a>
+          <button class="btn btn-ghost btn-small" id="logoutBtn" type="button">Log Out</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MENU -->
+  <section class="block" id="menu">
+    <div class="section-head">
+      <div>
+        <h2>Our Menu</h2>
+      </div>
+    </div>
+    <div class="toolbar">
+      <div class="search">🔍 <input id="menuSearch" type="text" placeholder="Search dishes… (e.g. biryani, karahi)" aria-label="Search dishes" /></div>
+      <div class="pills" id="categoryPills"></div>
+    </div>
+    <div class="status" id="menuStatus"></div>
+    <div class="menu-grid" id="menuGrid"></div>
+  </section>
+
+  <!-- RESERVATION FORM -->
+  <section class="block" id="reserve">
+    <div class="section-head">
+      <div>
+        <h2>Book a Table</h2>
+        <p>Fill out the form below to secure your table.</p>
+      </div>
+    </div>
+    <div class="grid-2">
+      <div class="card pad">
+        <div id="resMsg" class="error" hidden></div>
+        <form id="resForm">
+          <label class="field"><span>Name</span><input type="text" id="resName" placeholder="Your full name" required /></label>
+          <div class="form-row">
+            <label class="field"><span>Date</span><input type="date" id="resDate" required /></label>
+            <label class="field"><span>Time</span><input type="time" id="resTime" value="19:00" required /></label>
+          </div>
+          <label class="field"><span>Number of Guests</span><input type="number" id="resGuests" min="1" max="30" value="2" required /></label>
+          <button class="btn btn-primary" id="resSubmitBtn" type="submit" style="width:100%">Submit Reservation</button>
+          <p class="hint">Tables are held for 15 minutes past booking time. Parties and events — we cater. Call or WhatsApp +44 7465 239428.</p>
+        </form>
+      </div>
+      <div class="card pad">
+        <h3 style="margin:0 0 6px;font-family:var(--font-head)">Good to know</h3>
+        <p class="hint">💯 100% halal · authentic desi taste · made with love</p>
+        <p class="hint">🚚 Delivery available in Wolverhampton · 📞 +44 7465 239428</p>
+        <p class="hint">📍 Find us: HRRX+RR Wolverhampton, United Kingdom</p>
+        <p class="hint">🎉 We take orders for all occasions — parties, gatherings, events</p>
+        <p class="hint">❄️ Frozen parathas, samosas and puff pastries to cook at home</p>
+        <p class="hint">Need to change plans? Find your booking below and hit <b>Delete</b> to cancel instantly.</p>
+        <a class="btn btn-ghost btn-small" href="#bookings">View My Bookings ↓</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ALL RESERVATIONS -->
+  <section class="block" id="bookings">
+    <div class="section-head">
+      <div>
+        <h2>All Reservations</h2>
+        <p id="bookingCount">Loading…</p>
+      </div>
+      <button class="btn btn-ghost btn-small" id="refreshBookingsBtn" type="button">↻ Refresh</button>
+    </div>
+    <div class="status" id="bookingStatus"></div>
+    <div id="bookingList"></div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="foot">
+    <div><strong>Homemade Halal Food Wolverhampton.</strong> © <span id="year">2026</span> · 100% halal, made with love</div>
+    <div>Delivery in Wolverhampton · Order: +44 7465 239428 · HRRX+RR Wolverhampton<br /><span class="hint">Pakora photo: public domain via Wikimedia Commons · Paratha photo: Shahzaib Damn Cruze, CC BY-SA 4.0, via Wikimedia Commons</span></div>
+  </div>
+</footer>
+
+<div id="toastCtn" aria-live="polite"></div>
+
+<!-- Customer-service chatbot -->
+<button id="chatFab" aria-label="Chat with us">💬<span id="chatDot" hidden>1</span></button>
+<div id="chatPanel" hidden role="dialog" aria-label="Homemade Halal Food customer service chat">
+  <div id="chatHead">
+    <div class="chat-id"><span class="chat-avatar">S</span><div><strong>Saba · Halal Food help</strong><span class="chat-online">Online — replies instantly</span></div></div>
+    <button id="chatClose" aria-label="Close chat">✕</button>
+  </div>
+  <div id="chatLog" aria-live="polite"></div>
+  <div id="chatChips"></div>
+  <form id="chatForm">
+    <input id="chatInput" type="text" placeholder="Ask about menu, hours, booking…" autocomplete="off" maxlength="300" />
+    <button type="submit" aria-label="Send">➤</button>
+  </form>
+</div>
+  <!-- FLOATING CART BUTTON -->
+  <button id="viewCartBtn" class="btn btn-primary" style="position: fixed; bottom: 90px; right: 20px; z-index: 85; box-shadow: 0 4px 12px rgba(194,65,12,0.4);" hidden>
+    View Cart • £0.00
+  </button>
+
+  <!-- CART MODAL -->
+  <div id="cartModalBackdrop" class="modal" hidden>
+    <div class="modal-content" role="dialog" aria-modal="true" style="max-width: 500px;">
+      <span class="close-modal" id="closeCartBtn">&times;</span>
+      <h2 style="font-family: var(--font-head); margin-top: 0;">Your Cart</h2>
+      
+      <ul id="cartItems" style="list-style: none; padding: 0; margin-bottom: 20px; max-height: 200px; overflow-y: auto;">
+        <!-- Cart items will load here -->
+      </ul>
+      
+      <div id="cartTotalEl" style="font-weight: 800; font-size: 1.2rem; margin-bottom: 20px; text-align: right;">Total: £0.00</div>
+
+      <h3 style="font-family: var(--font-head);">Checkout Details</h3>
+      <form id="checkoutForm">
+        <label class="field"><span>Name</span>
+          <input id="customerNameInput" type="text" placeholder="Your full name" required>
+        </label>
+        
+        <label class="field"><span>Email</span>
+          <input id="customerEmailInput" type="email" placeholder="you@example.com" required>
+        </label>
+
+        <label class="field"><span>Payment Method</span>
+          <select id="paymentMethodInput" style="width: 100%; padding: 11px 13px; border: 1px solid #d9cfbf; border-radius: 11px;">
+            <option value="TRANSFER" selected>Bank Transfer</option>
+            <option value="CARD">Credit/Debit Card (Coming Soon)</option>
+          </select>
+        </label>
+
+        <div style="display: flex; gap: 10px; margin-top: 20px;">
+          <button type="button" id="continueShoppingBtn" class="btn btn-ghost" style="flex: 1;">Continue Shopping</button>
+          <button type="submit" id="checkoutBtn" class="btn btn-primary" style="flex: 1;">Place Order</button>
+        </div>
+      </form>
+      <div id="cartStatusEl" style="margin-top: 15px; font-size: 0.9rem; text-align: center; font-weight: bold;"></div>
+    </div>
+  </div>
+<script src="app.js"></script>
+<script src="chatbot.js"></script>
+</body>
+</html>
